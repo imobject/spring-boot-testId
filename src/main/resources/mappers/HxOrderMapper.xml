@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdn.dao.HxOrderMapper">
+  <resultMap id="BaseResultMap" type="com.csdn.entity.HxOrder">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="person_id" jdbcType="VARCHAR" property="personId" />
+    <result column="exoerts_id" jdbcType="VARCHAR" property="exoertsId" />
+    <result column="server_item_id" jdbcType="VARCHAR" property="serverItemId" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, person_id, exoerts_id, server_item_id, end_date, price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hx_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csdn.entity.HxOrder">
+    insert into hx_order (id, person_id, exoerts_id, 
+      server_item_id, end_date, price
+      )
+    values (#{id,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{exoertsId,jdbcType=VARCHAR}, 
+      #{serverItemId,jdbcType=VARCHAR}, #{endDate,jdbcType=TIMESTAMP}, #{price,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.csdn.entity.HxOrder">
+    insert into hx_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="personId != null">
+        person_id,
+      </if>
+      <if test="exoertsId != null">
+        exoerts_id,
+      </if>
+      <if test="serverItemId != null">
+        server_item_id,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="exoertsId != null">
+        #{exoertsId,jdbcType=VARCHAR},
+      </if>
+      <if test="serverItemId != null">
+        #{serverItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csdn.entity.HxOrder">
+    update hx_order
+    <set>
+      <if test="personId != null">
+        person_id = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="exoertsId != null">
+        exoerts_id = #{exoertsId,jdbcType=VARCHAR},
+      </if>
+      <if test="serverItemId != null">
+        server_item_id = #{serverItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csdn.entity.HxOrder">
+    update hx_order
+    set person_id = #{personId,jdbcType=VARCHAR},
+      exoerts_id = #{exoertsId,jdbcType=VARCHAR},
+      server_item_id = #{serverItemId,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

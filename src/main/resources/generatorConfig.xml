@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="application.properties" />
+	<classPathEntry location="D:/lib/mysql-connector-java-5.1.38.jar" />
+	<context id="context1">
+
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- <jdbcConnection -->
+		<!-- connectionURL="jdbc:mysql://192.168.100.41:3306/test1?characterEncoding=UTF-8" -->
+		<!-- driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" 
+			/> -->
+		<jdbcConnection connectionURL="${spring.datasource.url}"
+			driverClass="${spring.datasource.driverClassName}" password="${spring.datasource.password}"
+			userId="${spring.datasource.username}" />
+
+		<javaModelGenerator targetPackage="com.csdn.entity"
+			targetProject="spring-boot-testId/src/main/java" />
+		<!--对应的mapper.xml文件 -->
+		<sqlMapGenerator targetPackage="mappers"
+			targetProject="spring-boot-testId/src/main/resources" />
+
+		<!-- 对应的Mapper接口类文件 -->
+		<javaClientGenerator targetPackage="com.csdn.dao"
+			targetProject="spring-boot-testId/src/main/java" type="XMLMAPPER" />
+		<!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
+		<table tableName="hx_user" domainObjectName="HxUser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="hx_experts" domainObjectName="HxExperts"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="hx_server_item" domainObjectName="HxServerItem"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="hx_order" domainObjectName="HxOrder"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="hx_good_will" domainObjectName="HxGoodWill"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="hx_evaluation" domainObjectName="HxEvaluation"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="hx_good_will_item" domainObjectName="HxGoodWillItem"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+	</context>
+</generatorConfiguration>

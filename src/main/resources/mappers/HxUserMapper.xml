@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdn.dao.HxUserMapper">
+  <resultMap id="BaseResultMap" type="com.csdn.entity.HxUser">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="is_success" jdbcType="CHAR" property="isSuccess" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="is_experts" jdbcType="CHAR" property="isExperts" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, is_success, img, is_experts
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hx_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csdn.entity.HxUser">
+    insert into hx_user (id, name, password, 
+      is_success, img, is_experts
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{isSuccess,jdbcType=CHAR}, #{img,jdbcType=VARCHAR}, #{isExperts,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.csdn.entity.HxUser">
+    insert into hx_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="isSuccess != null">
+        is_success,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="isExperts != null">
+        is_experts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=CHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="isExperts != null">
+        #{isExperts,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csdn.entity.HxUser">
+    update hx_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        is_success = #{isSuccess,jdbcType=CHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="isExperts != null">
+        is_experts = #{isExperts,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csdn.entity.HxUser">
+    update hx_user
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      is_success = #{isSuccess,jdbcType=CHAR},
+      img = #{img,jdbcType=VARCHAR},
+      is_experts = #{isExperts,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdn.dao.HxEvaluationMapper">
+  <resultMap id="BaseResultMap" type="com.csdn.entity.HxEvaluation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="stars" jdbcType="INTEGER" property="stars" />
+    <result column="tip" jdbcType="VARCHAR" property="tip" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, stars, tip, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hx_evaluation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hx_evaluation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csdn.entity.HxEvaluation">
+    insert into hx_evaluation (id, stars, tip, 
+      order_id)
+    values (#{id,jdbcType=VARCHAR}, #{stars,jdbcType=INTEGER}, #{tip,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.csdn.entity.HxEvaluation">
+    insert into hx_evaluation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="stars != null">
+        stars,
+      </if>
+      <if test="tip != null">
+        tip,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="stars != null">
+        #{stars,jdbcType=INTEGER},
+      </if>
+      <if test="tip != null">
+        #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csdn.entity.HxEvaluation">
+    update hx_evaluation
+    <set>
+      <if test="stars != null">
+        stars = #{stars,jdbcType=INTEGER},
+      </if>
+      <if test="tip != null">
+        tip = #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csdn.entity.HxEvaluation">
+    update hx_evaluation
+    set stars = #{stars,jdbcType=INTEGER},
+      tip = #{tip,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
