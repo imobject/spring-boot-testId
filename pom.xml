@@ -25,7 +25,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<springfox.version>2.2.2</springfox.version>
 		<sitemesh.version>3.0.1</sitemesh.version>
-		<jsoup.version>1.9.2</jsoup.version>
+		<jsoup.version>1.14.2</jsoup.version>
 		<commons-lang3.version>3.4</commons-lang3.version>
 		<guava.version>18.0</guava.version>
 		<poi.version>3.9</poi.version>
